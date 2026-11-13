@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DriveReach Favicon -->
+    <link rel="icon"
+          type="image/png"
+          sizes="1024x1024"
+          href="https://drivereach.co.za/assets/steeringwheel.png?v=5">
+    
+    <link rel="shortcut icon"
+          href="https://drivereach.co.za/assets/steeringwheel.png?v=5">
+    <title>DriveReach | Reaching Learners, Reaching Dreams</title>
+
+    <!-- Basic SEO -->
+    <meta name="description" content="Help DriveReach understand the challenges South Africans face when obtaining their learner's and driver's licences. Complete our community survey and make your voice count.">
+
+    <meta name="keywords" content="DriveReach, driving schools, learner drivers, learner's licence, driver's licence, driving lessons, South Africa">
+
+    <meta name="author" content="DriveReach">
+    <meta name="theme-color" content="#FF7900">
+    <!-- Facebook and WhatsApp Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DriveReach">
+
+    <meta property="og:title" content="DriveReach | Reaching Learners, Reaching Dreams">
+
+    <meta property="og:description" content="Your voice matters! Help us understand the challenges South Africans face when obtaining their learner's and driver's licences. Complete the DriveReach community survey.">
+
+    <meta property="og:url" content="https://drivereach.co.za/survey/community/">
+
+    <meta property="og:image" content="https://drivereach.co.za/assets/logo.png?v=5">
+
+    <meta property="og:image:secure_url" content="https://drivereach.co.za/assets/logo.png?v=5">
+
+    <meta property="og:image:type" content="image/png">
+
+    <meta property="og:image:alt" content="DriveReach - Reaching Learners, Reaching Dreams">
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta property="og:locale" content="en_ZA">
+
+    <!-- Twitter / X Sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="DriveReach | Reaching Learners, Reaching Dreams">
+
+    <meta name="twitter:description" content="Your voice matters! Complete the DriveReach community survey and help us improve access to learner's and driver's licences in South Africa.">
+
+    <meta name="twitter:image" content="https://drivereach.co.za/assets/steeringwheel.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap');
+:root{
+  --navy:#102b46;--navy2:#183c5b;--blue:#ed861b;--blue2:#f5a623;
+  --ink:#17324d;--muted:#718096;--line:#e5e9ee;--paper:#fff;
+  --canvas:#ffffff;--pale:#fff5e9;--success:#13845b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:'DM Sans',sans-serif}
+button,input,select,textarea{font:inherit}
+.topbar{position:relative;z-index:5;background:#ffffff;padding:16px 6%;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #e6eaf0;min-height:112px}
+.brand{display:flex;align-items:center;min-width:0}
+.brand img{display:block;width:min(390px,62vw);height:auto;max-height:92px;object-fit:contain;object-position:left center;background:#fff;flex:0 1 auto}
+.top-note{color:#718096;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+.hero{background:radial-gradient(ellipse at 82% 8%,#fff0dc 0%,transparent 48%),linear-gradient(120deg,#fffaf4 0%,#ffffff 58%,#fff5e9 100%);color:#102b46;padding:54px 20px 88px;text-align:center;border-bottom:1px solid #f2e8dc}
+.hero .eyebrow{color:#cf781c;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.hero h1{font:800 clamp(29px,5vw,46px)/1.15 Manrope,sans-serif;letter-spacing:-1.7px;margin:15px 0 13px}
+.hero p{max-width:630px;margin:auto;color:#718096;font-size:15px;line-height:1.8}
+.wrap{max-width:790px;padding:0 18px;margin:30px auto 55px;position:relative;z-index:1}
+.card{background:var(--paper);border:1px solid #e8edf4;border-radius:19px;padding:clamp(22px,5vw,38px);box-shadow:0 18px 55px #0b1d3512}
+.progress-meta{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:800;margin-bottom:12px;color:#52647c}
+#percent{color:var(--blue)}
+.track{height:7px;background:#e9eef6;border-radius:20px;overflow:hidden;margin-bottom:34px}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#b96716,#f5a623);border-radius:20px;transition:width .3s}
+.pill{display:inline-block;background:#fff1df;color:#b96716;border-radius:6px;padding:7px 11px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:13px}
+h2{font:800 25px/1.25 Manrope,sans-serif;letter-spacing:-.8px;margin:0 0 9px}
+.intro{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 28px}
+.question{margin:0 0 27px}
+.qtitle{font-size:14px;line-height:1.55;font-weight:800;margin-bottom:12px}
+.req{color:#d92d20}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.option{border:1px solid var(--line);border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:10px;min-height:52px;font-size:13px;line-height:1.4;cursor:pointer;transition:.16s}
+.option:hover{border-color:#f2b36f;background:#fffaf4}
+.option.selected{border:1.5px solid #ed861b;background:#fff1df;color:#a95f16;font-weight:700}
+.option input{
+  appearance:none;
+  -webkit-appearance:none;
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  margin:0;
+  border:2px solid #ed861b;
+  background:#ffffff;
+  display:inline-grid;
+  place-content:center;
+  cursor:pointer;
+}
+.option input[type="radio"]{border-radius:50%}
+.option input[type="checkbox"]{border-radius:5px}
+.option input::before{
+  content:"";
+  width:9px;
+  height:9px;
+  transform:scale(0);
+  transition:transform .12s ease-in-out;
+  background:#ffffff;
+}
+.option input[type="radio"]::before{border-radius:50%}
+.option input[type="checkbox"]::before{
+  width:8px;
+  height:5px;
+  border-left:2px solid #ffffff;
+  border-bottom:2px solid #ffffff;
+  background:transparent;
+  transform:scale(0) rotate(-45deg);
+  margin-top:-2px;
+}
+.option input:checked{
+  background:#ed861b;
+  border-color:#ed861b;
+}
+.option input:checked::before{transform:scale(1)}
+.option input:focus-visible{outline:3px solid #f9d2a6;outline-offset:2px}
+.control{width:100%;border:1px solid var(--line);border-radius:10px;padding:14px;background:white;color:var(--ink);outline:none;font-size:14px}
+.control:focus{border-color:var(--blue);box-shadow:0 0 0 3px #ed861b16}
+textarea.control{min-height:110px;resize:vertical}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:23px;margin-top:30px}
+.btn{border:0;border-radius:9px;padding:14px 21px;font-size:13px;font-weight:800;cursor:pointer;transition:.18s}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.secondary{background:#eef2f7;color:#24364d}
+.primary{background:var(--blue);color:white;box-shadow:0 5px 13px #ed861b26}
+.primary:hover{background:#174fc5;transform:translateY(-1px)}
+.error{font-size:12px;color:#c62828;font-weight:600;margin-top:13px;min-height:16px}
+.privacy{background:#fcf8f3;border:1px solid #e8edf4;border-radius:10px;padding:13px 14px;margin-top:20px;color:#69788c;font-size:11px;line-height:1.65}
+.footer{text-align:center;color:#718096;font-size:11px;padding:0 20px 28px}
+.footer strong{color:#b96716}
+.success{text-align:center;padding:35px 8px}
+.check{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:#e5f7ee;color:var(--success);font-size:34px;font-weight:800;margin:0 auto 20px}
+.success p{color:var(--muted);font-size:14px;line-height:1.8;max-width:470px;margin:0 auto 18px}
+.hidden{display:none!important}
+@media(max-width:580px){.topbar{padding:12px 16px;min-height:88px;gap:8px}.brand{flex:1;min-width:0}.brand img{width:min(280px,68vw);max-height:76px}.top-note{font-size:9px;letter-spacing:.8px}.wrap{margin:22px auto 40px;padding:0 12px}.welcome-screen{margin:20px 12px 0;padding:30px 20px}.welcome-screen p{font-size:14px}}.brand img{width:min(280px,68vw);max-height:76px}.top-note{font-size:9px;letter-spacing:.7px}
+ .hero{padding:43px 20px 75px}.options{grid-template-columns:1fr}
+ .nav .btn{padding:13px 15px}.wrap{padding:0 12px}
+
+
+.welcome-screen{
+  max-width:790px;margin:38px auto 0;padding:clamp(28px,6vw,54px) 24px;
+  text-align:center;background:radial-gradient(ellipse at 85% 5%,#fff0dc 0%,transparent 48%),
+  linear-gradient(120deg,#fffaf4 0%,#ffffff 58%,#fff5e9 100%);
+  border:1px solid #f2e8dc;border-radius:20px;
+}
+.welcome-eyebrow{color:#cf781c;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.welcome-screen h1{font:800 clamp(28px,5vw,43px)/1.16 Manrope,sans-serif;letter-spacing:-1.5px;color:#102b46;margin:0 auto 18px;max-width:650px}
+.welcome-screen p{max-width:650px;margin:0 auto 14px;color:#718096;font-size:15px;line-height:1.8}
+.welcome-screen .welcome-note{color:#52647c}
+.welcome-start{margin-top:16px;min-width:220px}
+.welcome-footnote{margin-top:18px;color:#8a96a5;font-size:11px}
+#surveyCard{display:none;position:relative;z-index:1}
+.primary:disabled{background:#102b46!important;color:#fff!important;opacity:1!important;box-shadow:none!important;cursor:not-allowed}
+@media(max-width:580px){.welcome-screen{margin:20px 12px 0;padding:30px 20px}.welcome-screen p{font-size:14px}}
+
+
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img src="https://drivereach.co.za/assets/logo.png" alt="DriveReach logo — Reaching Learners Left Behind"></div>
+  <div class="top-note">Driver survey · 2026</div>
+</header>
+
+<section class="welcome-screen" id="welcomeScreen">
+  <div class="welcome-eyebrow">A better journey starts with understanding</div>
+  <h1>Help us make getting a driver's licence more accessible.</h1>
+  <p>DriveReach is researching the real challenges people face when trying to get their driver's licence. Your answers will help us understand what learners need, what makes driving lessons difficult to afford, and how we can build better ways to connect people with driving schools and opportunities.</p>
+  <p class="welcome-note">Your feedback matters. This short survey will guide the services we develop and help us reach learners who are often left behind.</p>
+  <button class="btn primary welcome-start" id="startSurveyBtn" type="button">Start the survey →</button>
+  <div class="welcome-footnote">Your responses will be used for DriveReach market research. Anonymous browser cookies help count visits and prevent repeat submissions.</div>
+</section>
+<main class="wrap">
+  <section class="card" id="surveyCard">
+    <div id="survey">
+      <div class="progress-meta"><span id="stepLabel">SECTION 1 OF 6</span><span id="percent">17% completed</span></div>
+      <div class="track"><div class="fill" id="progress"></div></div>
+      <div id="formContent"></div>
+      <div class="nav">
+        <button class="btn secondary" id="backBtn" type="button">← Back</button>
+        <button class="btn primary" id="nextBtn" type="button">Continue →</button>
+      </div>
+      <div class="error" id="errorMessage" role="alert"></div>
+      <div class="privacy">Your answers will be used for DriveReach market research. Contact details are optional and will only be requested if you choose to hear from us about the launch. We also use an anonymous browser cookie to count unique website visitors and help prevent repeat survey submissions. Please do not enter sensitive personal information.</div>
+    </div>
+    <div id="successPage" class="success hidden">
+      <div class="check">✓</div>
+      <h2>Thank you for being part of the journey!</h2>
+      <p>Your responses have been received. Thank you for helping DriveReach understand the barriers people face when working towards a driver’s licence.</p>
+      <strong>DriveReach — Reaching Learners Left Behind.</strong>
+    </div>
+  </section>
+</main>
+<footer class="footer">© 2026 <strong>DriveReach</strong> · Your journey. Your destination.</footer>
+
+
+<script>
+
+const sections = [
+  {
+    title: "Let's get to know you",
+    description: "Tell us a little about yourself so we can understand your driving journey.",
+    questions: [
+      { id:"age", title:"What is your age group?", type:"radio", required:true, options:["16–18","19–24","25–30","31–40","41–50","51+"] },
+      { id:"province", title:"Which province do you currently live in?", type:"select", required:true, options:["Eastern Cape","Free State","Gauteng","KwaZulu-Natal","Limpopo","Mpumalanga","Northern Cape","North West","Western Cape"] },
+      { id:"city", title:"Which city or town do you currently live in?", type:"text", required:true, placeholder:"Enter your city or town" },
+      { id:"employment", title:"What is your current employment status?", type:"radio", required:true, options:["Employed full-time","Employed part-time","Self-employed","Student","Unemployed"] },
+      { id:"licence", title:"What is your current driving licence status?", type:"radio", required:true, options:["I don't have a learner's licence","I have a learner's licence","I am taking driving lessons","I have failed my driving test","I already have a driver's licence"] }
+    ]
+  },
+  {
+    title:"Starting your learner's licence journey",
+    description:"Let's understand what is stopping you from getting your learner's licence and what support would help.",
+    showIf:"licence", showIfValue:"I don't have a learner's licence",
+    questions:[
+      {id:"learnerReason",title:"Why haven't you obtained your learner's licence yet?",type:"radio",required:true,options:["I cannot afford the process","I don't know how to apply","I haven't had time","I am nervous about the learner's test","I haven't started preparing","Other"]},
+      {id:"learnerPreparation",title:"Have you started studying for your learner's licence test?",type:"radio",required:true,options:["Yes, regularly","Yes, occasionally","No, not yet"]},
+      {id:"learnerSupport",title:"What would help you obtain your learner's licence? (Select all that apply)",type:"checkbox",required:true,options:["Free learner's licence study material","Online practice tests","Guidance on the application process","Financial assistance","Help booking the test","Reminders and preparation support"]},
+      {id:"learnerBudget",title:"How much could you afford to spend getting your learner's licence?",type:"radio",required:true,options:["R0–R250","R251–R500","R501–R1,000","More than R1,000","I cannot afford it currently"]}
+    ]
+  },
+  {
+    title:"Your learner's licence progress",
+    description:"Tell us what stage you are at and what you need to move towards your driver's licence.",
+    showIf:"licence", showIfValue:"I have a learner's licence",
+    questions:[
+      {id:"learnerObtained",title:"When did you obtain your learner's licence?",type:"radio",required:true,options:["Within the last 3 months","3–6 months ago","6–12 months ago","More than a year ago"]},
+      {id:"testBooked",title:"Have you booked your practical driving test?",type:"radio",required:true,options:["Yes, I have a test date","No, I haven't booked yet","I am still looking for a driving school"]},
+      {id:"drivingConfidence",title:"How confident are you about driving a vehicle?",type:"radio",required:true,options:["Very confident","Somewhat confident","Not very confident","I haven't started driving yet"]},
+      {id:"learnerChallenges",title:"What is making it difficult to progress to your driver's licence? (Select all that apply)",type:"checkbox",required:true,options:["Lesson costs","Finding a driving school","Finding an available instructor","Lack of time","Finding a test booking","Lack of confidence","Other"]},
+      {id:"learnerFunding",title:"Would financial assistance help you progress to your driver's licence?",type:"radio",required:true,options:["Yes","No","Maybe"]}
+    ]
+  },
+  {
+    title:"Your driving lesson experience",
+    description:"We want to understand your current lessons, instructor experience and training costs.",
+    showIf:"licence", showIfValue:"I am taking driving lessons",
+    questions:[
+      {id:"lessonFrequency",title:"How often do you attend driving lessons?",type:"radio",required:true,options:["Every day","Several times a week","Once a week","A few times a month","Only when I can afford it"]},
+      {id:"lessonProgress",title:"How would you describe your progress with driving lessons?",type:"radio",required:true,options:["Making good progress","Learning, but need more practice","Struggling with certain driving skills","Not making much progress"]},
+      {id:"instructorExperience",title:"How would you rate your experience with your driving instructor?",type:"radio",required:true,options:["Very good","Good","Average","Poor","I am not currently satisfied"]},
+      {id:"lessonAffordability",title:"How do you currently pay for your driving lessons?",type:"radio",required:true,options:["Pay per lesson","Pay for a package upfront","Pay in instalments","Someone else pays","I struggle to afford lessons"]},
+      {id:"lessonChallenges",title:"What is your biggest challenge with your driving lessons? (Select all that apply)",type:"checkbox",required:true,options:["Lesson costs","Instructor availability","Scheduling lessons","Understanding driving techniques","Not enough practice","Lessons being cancelled","Other"]},
+      {id:"lessonSupport",title:"What would improve your driving lesson experience?",type:"textarea",required:true,placeholder:"Tell us what would make learning easier..."}
+    ]
+  },
+  {
+    title:"Getting ready to pass your driving test",
+    description:"Failing a driving test can be discouraging. Help us understand what happened and what support you need next.",
+    showIf:"licence", showIfValue:"I have failed my driving test",
+    questions:[
+      {id:"testAttempts",title:"How many times have you attempted your practical driving test?",type:"radio",required:true,options:["Once","Twice","Three times","Four times","Five or more times"]},
+      {id:"testFailureReason",title:"What was the main reason you failed your driving test?",type:"radio",required:true,options:["Parallel parking","Reverse parking","Vehicle control","Observation and mirror checks","Road rules and traffic signs","Nervousness or anxiety","Other","I was not given a clear reason"]},
+      {id:"testFeedback",title:"Did you receive feedback explaining why you failed?",type:"radio",required:true,options:["Yes, clear feedback","Yes, but I didn't understand it","No, I received no feedback"]},
+      {id:"testRetry",title:"When would you like to attempt your driving test again?",type:"radio",required:true,options:["As soon as possible","Within 1–3 months","Within 3–6 months","When I can afford it","I am not sure"]},
+      {id:"testSupport",title:"What would help you pass your next driving test? (Select all that apply)",type:"checkbox",required:true,options:["Additional driving lessons","Affordable refresher lessons","A different instructor","Practice test sessions","Help booking another test","Financial assistance","More confidence behind the wheel"]}
+    ]
+  },
+  {
+    title:"Your driving experience",
+    description:"Now that you have your driver's licence, tell us about your driving experience and mobility needs.",
+    showIf:"licence", showIfValue:"I already have a driver's licence",
+    questions:[
+      {id:"licenceYears",title:"How long have you held your driver's licence?",type:"radio",required:true,options:["Less than 1 year","1–2 years","3–5 years","6–10 years","More than 10 years"]},
+      {id:"vehicleAccess",title:"Do you currently have regular access to a vehicle?",type:"radio",required:true,options:["Yes, I own a vehicle","Yes, I use a family member's vehicle","Yes, I use a company vehicle","No, I do not have regular access to a vehicle"]},
+      {id:"vehicle",title:"What type of vehicle do you currently own or primarily drive?",type:"radio",required:true,options:["Small hatchback","Sedan","SUV","Bakkie","Motorcycle","Commercial vehicle","I do not currently drive a vehicle"]},
+      {id:"licensedChallenges",title:"What challenges do you currently experience as a licensed driver? (Select all that apply)",type:"checkbox",required:true,options:["Cannot afford to purchase a vehicle","Vehicle finance is difficult to obtain","High fuel costs","High vehicle maintenance costs","High insurance costs","Finding reliable mechanics","Limited employment opportunities","Difficulty finding driving-related work","No major challenges","Other"]},
+      {id:"vehicleInterest",title:"Would you consider purchasing or financing a vehicle?",type:"radio",required:true,options:["Yes, immediately","Within 3–6 months","Within 6–12 months","Within 1–2 years","Maybe in the future","Not interested"]},
+      {id:"vehicleFinance",title:"Would you be interested in vehicle finance assistance?",type:"radio",required:true,options:["Yes","No","Maybe"]},
+      {id:"vehicleInsurance",title:"Do you currently have vehicle insurance?",type:"radio",required:true,options:["Yes, comprehensive insurance","Yes, third-party insurance","No, but I would like insurance","No, not interested"]},
+      {id:"vehicleMaintenance",title:"Would you use a platform that connects you with trusted vehicle maintenance and repair services?",type:"radio",required:true,options:["Yes","No","Maybe"]},
+      {id:"licensedNeeds",title:"Which opportunities or services interest you? (Select all that apply)",type:"checkbox",required:true,options:["Professional driving jobs","Delivery driver opportunities","Taxi or e-hailing opportunities","Company driver positions","Commercial driving opportunities","Advanced driving courses","Defensive driving courses","Vehicle finance","Vehicle insurance","Vehicle maintenance","Starting my own driving-related business","None of these"]},
+      {id:"licensedFutureComment",title:"What services or opportunities would you like DriveReach to offer licensed drivers?",type:"textarea",required:true,placeholder:"Tell us what would make a difference to you..."}
+    ]
+  },
+  {
+    title:"Discover DriveReach",
+    description:"Tell us which DriveReach services would be useful to you.",
+    questions:[
+      {id:"platform",title:"Would you use a platform that connects people with driving schools and mobility services?",type:"radio",required:true,options:["Yes","No","Maybe"]},
+      {id:"services",title:"Which services would you find most useful on DriveReach? (Select all that apply)",type:"checkbox",required:true,options:["Finding affordable driving schools","Booking driving lessons online","Paying for lessons in instalments","Tracking lesson progress","Learner's licence study material","Booking driving tests","Lesson and test reminders","Financial assistance","Vehicle finance and insurance","Vehicle maintenance","Driving-related job opportunities"]}
+    ]
+  },
+  {
+    title:"Your future and opportunities",
+    description:"Help us understand how driving and mobility can support your future.",
+    questions:[
+      {id:"employmentBenefit",title:"Do you believe having access to driving opportunities would improve your employment prospects?",type:"radio",required:true,options:["Yes","No","Not sure"]},
+      {id:"jobInterest",title:"Would you be interested in employment opportunities that involve driving?",type:"radio",required:true,options:["Yes","No","Maybe"]},
+      {id:"improvement",title:"What is the biggest thing DriveReach could do to improve your driving or mobility journey?",type:"textarea",required:true,placeholder:"Share your thoughts with us..."}
+    ]
+  },
+  {
+    title:"Stay connected with DriveReach",
+    description:"Would you like to hear from us when DriveReach launches? Contact details are only requested if you opt in.",
+    questions:[
+      {id:"contactPermission",title:"Would you like to be contacted when DriveReach launches?",type:"radio",required:true,options:["Yes","No"]},
+      {id:"fullName",title:"Your full name",type:"text",required:true,placeholder:"Enter your full name",showIf:"contactPermission",showIfValue:"Yes"},
+      {id:"phone",title:"Your contact number",type:"tel",required:true,placeholder:"e.g. 082 123 4567",showIf:"contactPermission",showIfValue:"Yes"},
+      {id:"email",title:"Your email address (optional)",type:"email",required:false,placeholder:"name@example.com",showIf:"contactPermission",showIfValue:"Yes"}
+    ]
+  }
+];
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA1_f32s6V0pr3kHQF4VxnCMQrF8xxKhzY",
+  authDomain: "drivereach-8548f.firebaseapp.com",
+  projectId: "drivereach-8548f",
+  storageBucket: "drivereach-8548f.firebasestorage.app",
+  messagingSenderId: "587409863866",
+  appId: "1:587409863866:web:0a760b5055abbe827f3e83",
+  measurementId: "G-LMLLJ50BSP"
+};
+
+const firebaseModulePromises = {};
+function loadFirebaseModule(name) {
+ if (!firebaseModulePromises[name]) {
+  firebaseModulePromises[name] = (async () => {
+   const primary = `https://www.gstatic.com/firebasejs/10.12.5/firebase-${name}.js`;
+   const fallback = `https://esm.sh/firebase@10.12.5/${name}`;
+   try {
+    return await import(primary);
+   } catch (primaryError) {
+    console.warn(`Firebase ${name} module failed on gstatic; trying fallback CDN.`, primaryError);
+    try {
+     return await import(fallback);
+    } catch (fallbackError) {
+     console.error(`Both Firebase CDNs failed for ${name}.`, fallbackError);
+     throw new Error(`Unable to load Firebase ${name} module. Check your internet connection or CDN access.`);
+    }
+   }
+  })();
+ }
+ return firebaseModulePromises[name];
+}
+let driveReachFirebasePromise;
+function getDriveReachFirebase(){
+ if(!driveReachFirebasePromise){
+  driveReachFirebasePromise=(async()=>{
+   const [{initializeApp},{getFirestore}]=await Promise.all([
+    loadFirebaseModule("app"),
+    loadFirebaseModule("firestore")
+   ]);
+   const app=initializeApp(firebaseConfig);
+   console.info("DriveReach Firebase initialized");
+   return {db:getFirestore(app)};
+  })();
+ }
+ return driveReachFirebasePromise;
+}
+
+
+let currentStep=0;
+
+// Anonymous browser identity and completion cookies.
+const VISITOR_COOKIE="dr_visitor_id";
+const COMPLETED_COOKIE="dr_survey_completed";
+const COOKIE_AGE=60*60*24*730;
+function readCookie(name){
+ const prefix=name+"=";
+ const item=document.cookie.split("; ").find(part=>part.startsWith(prefix));
+ return item?decodeURIComponent(item.slice(prefix.length)):"";
+}
+function writeCookie(name,value){
+ document.cookie=name+"="+encodeURIComponent(value)+"; Max-Age="+COOKIE_AGE+"; Path=/; SameSite=Lax"+(location.protocol==="https:"?"; Secure":"");
+}
+function createVisitorId(){
+ if(window.crypto&&typeof window.crypto.randomUUID==="function")return window.crypto.randomUUID();
+ return "dr-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+}
+let visitorId=readCookie(VISITOR_COOKIE)||createVisitorId();
+writeCookie(VISITOR_COOKIE,visitorId);
+function normalizeSouthAfricanPhone(value){
+ let phone=String(value||"").replace(/[\s().-]/g,"");
+ if(/^0[6-8][0-9]{8}$/.test(phone))phone="+27"+phone.slice(1);
+ return /^\+27[6-8][0-9]{8}$/.test(phone)?phone:null;
+}
+async function registerVisitor(){
+ const [{doc,runTransaction,serverTimestamp},{db}]=await Promise.all([
+  loadFirebaseModule("firestore"),
+  getDriveReachFirebase()
+ ]);
+ const visitorRef=doc(db,"driveReachSurveyVisitors",visitorId);
+ const statsRef=doc(db,"surveyStats","visitors");
+ await runTransaction(db,async transaction=>{
+  const visitorSnapshot=await transaction.get(visitorRef);
+  if(visitorSnapshot.exists())return;
+  const statsSnapshot=await transaction.get(statsRef);
+  transaction.set(visitorRef,{visitorId,firstVisitAt:serverTimestamp(),surveyCompleted:false});
+  if(statsSnapshot.exists()){
+   const current=Number(statsSnapshot.data().visitorCount)||0;
+   transaction.update(statsRef,{visitorCount:current+1,updatedAt:serverTimestamp(),lastVisitorId:visitorId});
+  }else{
+   transaction.set(statsRef,{visitorCount:1,updatedAt:serverTimestamp(),lastVisitorId:visitorId});
+  }
+ });
+}
+const answers={};
+const content=document.getElementById("formContent");
+const errorBox=document.getElementById("errorMessage");
+
+function visible(q){
+ if(q.showIf){
+  const dependency=answers[q.showIf];
+  if(q.showIfValue!==undefined){
+   return Array.isArray(q.showIfValue)
+    ? q.showIfValue.includes(dependency)
+    : dependency===q.showIfValue;
+  }
+  if(q.showIfNot!==undefined){
+   return dependency!==undefined && dependency!==q.showIfNot;
+  }
+ }
+ return true;
+}
+function sectionVisible(section){
+ if(!section.showIf)return true;
+ return visible({showIf:section.showIf,showIfValue:section.showIfValue,showIfNot:section.showIfNot});
+}
+function activeSections(){
+ return sections.map((section,index)=>({section,index})).filter(item=>sectionVisible(item.section));
+}
+function currentSectionEntry(){
+ const active=activeSections();
+ if(!active.length)return null;
+ currentStep=Math.max(0,Math.min(currentStep,active.length-1));
+ return active[currentStep];
+}
+function currentSection(){
+ return currentSectionEntry()?.section || null;
+}
+function deriveRespondentType(){
+ const mapping={
+  "I don't have a learner's licence":"no_learner",
+  "I have a learner's licence":"learner_only",
+  "I am taking driving lessons":"in_training",
+  "I have failed my driving test":"test_resit",
+  "I already have a driver's licence":"licensed_driver"
+ };
+ if(answers.licence && mapping[answers.licence]) answers.respondentType=mapping[answers.licence];
+ else delete answers.respondentType;
+}
+function clearInactiveAnswers(){
+ deriveRespondentType();
+ sections.forEach(section=>{
+  section.questions.forEach(q=>{
+   // Remove answers from an entire branch when that branch is not active,
+   // as well as answers to individually hidden questions.
+   if(!sectionVisible(section) || !visible(q)) delete answers[q.id];
+  });
+ });
+}
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function renderQuestion(q){
+ if(!visible(q))return "";
+ const value=answers[q.id];
+ let out='<div class="question"><div class="qtitle">'+esc(q.title)+(q.required?' <span class="req">*</span>':'')+'</div>';
+ if(q.type==="radio"||q.type==="checkbox"){
+  out+='<div class="options">';
+  q.options.forEach(opt=>{
+   const checked=q.type==="radio"?value===opt:Array.isArray(value)&&value.includes(opt);
+   out+='<label class="option '+(checked?'selected':'')+'"><input type="'+q.type+'" name="'+esc(q.id)+'" value="'+esc(opt)+'" '+(checked?'checked':'')+'><span>'+esc(opt)+'</span></label>';
+  });
+  out+='</div>';
+ }else if(q.type==="select"){
+  out+='<select class="control" name="'+esc(q.id)+'"><option value="">Choose an option</option>'+q.options.map(opt=>'<option value="'+esc(opt)+'" '+(value===opt?'selected':'')+'>'+esc(opt)+'</option>').join("")+'</select>';
+ }else if(q.type==="textarea"){
+  out+='<textarea class="control" name="'+esc(q.id)+'" placeholder="'+esc(q.placeholder||"")+'">'+esc(value||"")+'</textarea>';
+ }else{
+  out+='<input class="control" type="'+esc(q.type)+'" name="'+esc(q.id)+'" '+(q.id==="phone"?'inputmode="tel" autocomplete="tel" maxlength="20" ':'')+'placeholder="'+esc(q.placeholder||"")+'" value="'+esc(value||"")+'">';
+ }
+ return out+'</div>';
+}
+function save(input){
+ const section=currentSection();
+ if(!section)return;
+ const q=section.questions.find(item=>item.id===input.name);
+ if(!q)return;
+ if(q.type==="checkbox"){
+  answers[q.id]=[...content.querySelectorAll('input[name="'+CSS.escape(q.id)+'"]:checked')].map(el=>el.value);
+ }else{
+  answers[q.id]=input.value;
+ }
+ clearInactiveAnswers();
+}
+function updateNextButtonState(){
+ const button=document.getElementById("nextBtn");
+ const section=currentSection();
+ if(!button||!section)return;
+ const complete=section.questions.every(q=>{
+  if(!visible(q)||!q.required)return true;
+  const value=answers[q.id];
+  return Array.isArray(value)?value.length>0:!!(value&&String(value).trim());
+ });
+ button.disabled=!complete;
+}
+function render(){
+ clearInactiveAnswers();
+ const entry=currentSectionEntry();
+ if(!entry){
+  content.innerHTML="<p>Please select your driving licence status to continue.</p>";
+  return;
+ }
+ const section=entry.section;
+ const active=activeSections();
+ const total=active.length;
+ const pct=Math.round((currentStep+1)/total*100);
+ document.getElementById("stepLabel").textContent="SECTION "+(currentStep+1)+" OF "+total;
+ document.getElementById("percent").textContent=pct+"% completed";
+ document.getElementById("progress").style.width=pct+"%";
+ content.innerHTML='<div class="pill">Step '+(currentStep+1)+'</div><h2>'+esc(section.title)+'</h2><p class="intro">'+esc(section.description)+'</p>'+section.questions.map(renderQuestion).join("");
+ document.getElementById("backBtn").disabled=currentStep===0;
+ document.getElementById("nextBtn").textContent=currentStep===total-1?"Submit survey ✓":"Continue →";
+ errorBox.textContent="";
+ content.querySelectorAll("input,select,textarea").forEach(el=>{
+  el.addEventListener("change",()=>{
+   save(el);
+   render();
+  });
+  el.addEventListener("input",()=>{
+   if(["text","tel","email"].includes(el.type)||el.tagName==="TEXTAREA"){
+    save(el);
+    updateNextButtonState();
+   }
+  });
+ });
+ updateNextButtonState();
+}
+function validate(){
+ const section=currentSection();
+ if(!section)return false;
+ for(const q of section.questions){
+  if(!visible(q)||!q.required)continue;
+  const v=answers[q.id];
+  const empty=Array.isArray(v)?v.length===0:!v||!String(v).trim();
+  if(empty){errorBox.textContent="Please answer: "+q.title;return false;}
+  if(q.type==="email"&&v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+   errorBox.textContent="Please enter a valid email address.";return false;
+  }
+  if(q.id==="phone"&&!normalizeSouthAfricanPhone(v)){
+   errorBox.textContent="Please enter a valid South African mobile number, e.g. 082 123 4567 or +27 82 123 4567.";return false;
+  }
+ }
+ return true;
+}
+function next(){
+ if(!validate())return;
+ const total=activeSections().length;
+ if(currentStep<total-1){
+  currentStep++;
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
+ }else{
+  submit();
+ }
+}
+function back(){
+ if(currentStep>0){
+  currentStep--;
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
+ }
+}
+async function submit(){
+ const nextBtn=document.getElementById("nextBtn");
+ nextBtn.disabled=true;
+ nextBtn.textContent="Submitting…";
+ errorBox.textContent="";
+
+ try{
+  const [
+    {collection, doc, getDoc, writeBatch, serverTimestamp, increment},
+    {db}
+  ] = await Promise.all([
+    loadFirebaseModule("firestore"),
+    getDriveReachFirebase()
+  ]);
+
+  await registerVisitor();
+  if(readCookie(COMPLETED_COOKIE)==="1"){
+    throw new Error("This browser has already completed the survey. Thank you for participating!");
+  }
+  const consent = answers.contactPermission;
+  if(consent !== "Yes" && consent !== "No"){
+    throw new Error("Please choose whether you agree to hear from DriveReach.");
+  }
+
+  // Create one survey ID and reuse it across the survey and contact preference.
+  const surveyRef=doc(collection(db,"driveReachSurveys"));
+  const surveyId=surveyRef.id;
+
+  // Recalculate the respondent category immediately before submission.
+  deriveRespondentType();
+  const surveyData={...answers};
+  delete surveyData.contactPermission;
+  delete surveyData.fullName;
+  delete surveyData.phone;
+  delete surveyData.email;
+
+  surveyData.source="DriveReach website survey";
+  surveyData.surveyVersion=5;
+  surveyData.visitorId=visitorId;
+  surveyData.submittedAt=serverTimestamp();
+
+  const preferenceRef=doc(db,"driveReachContactPreferences",surveyId);
+  const communityRef=doc(db,"surveyStats","community");
+  const visitorRef=doc(db,"driveReachSurveyVisitors",visitorId);
+  const batch=writeBatch(db);
+
+  batch.set(surveyRef,surveyData);
+
+  // The contact preference document stores the consent choice AND the
+  // respondent's personal details when they have opted in.
+  const preferenceData={
+    surveyId,
+    consentToLaunchContact: consent === "Yes",
+    submittedAt: serverTimestamp()
+  };
+
+  if(consent === "Yes"){
+    const fullName=(answers.fullName || "").trim();
+    const phone=normalizeSouthAfricanPhone(answers.phone || "");
+    const email=(answers.email || "").trim();
+
+    if(!fullName || !phone){
+      throw new Error("Please enter your name and a valid South African mobile number.");
+    }
+
+    preferenceData.fullName=fullName;
+    preferenceData.phone=phone;
+    if(email) preferenceData.email=email;
+  }
+
+  batch.set(preferenceRef,preferenceData);
+  batch.update(visitorRef,{surveyCompleted:true,completedAt:serverTimestamp(),surveyId});
+
+  // Keep the community counter format compatible with its current document.
+  const communitySnapshot=await getDoc(communityRef);
+  if(communitySnapshot.exists()){
+    batch.update(communityRef,{
+      completedCount:increment(1),
+      updatedAt:serverTimestamp(),
+      lastSubmissionId:surveyId
+    });
+  }else{
+    batch.set(communityRef,{
+      completedCount:1,
+      updatedAt:serverTimestamp(),
+      lastSubmissionId:surveyId
+    });
+  }
+
+  await batch.commit();
+  writeCookie(COMPLETED_COOKIE,"1");
+
+  console.log("DriveReach survey submitted:",surveyId);
+  document.getElementById("survey").classList.add("hidden");
+  document.getElementById("successPage").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+
+ }catch(error){
+  console.error("DriveReach survey submission failed:",error);
+  errorBox.textContent =
+    error.code === "permission-denied"
+      ? "Firestore denied the submission. Please check that the new Firestore rules have been published."
+      : (error.message || "We couldn't submit your survey. Please check your connection and try again.");
+  nextBtn.disabled=false;
+  nextBtn.textContent="Try submission again ↻";
+ }
+}
+document.getElementById("startSurveyBtn").addEventListener("click",function(){
+ document.getElementById("welcomeScreen").style.display="none";
+ document.getElementById("surveyCard").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+});
+document.getElementById("nextBtn").addEventListener("click",next);
+document.getElementById("backBtn").addEventListener("click",back);
+if(readCookie(COMPLETED_COOKIE)==="1"){
+ document.getElementById("welcomeScreen").style.display="none";
+ document.getElementById("surveyCard").style.display="block";
+ document.getElementById("survey").classList.add("hidden");
+ document.getElementById("successPage").classList.remove("hidden");
+ document.getElementById("successPage").querySelector("p").textContent="This browser has already submitted a DriveReach survey. Thank you for helping us understand the challenges learners face.";
+}
+render();
+registerVisitor().catch(error=>console.warn("Visitor tracking could not be saved:",error));
+</script>
+</body>
+</html>

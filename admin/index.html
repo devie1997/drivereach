@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b46"><title>DriveReach | Survey Admin</title>
+<link rel="icon" type="image/png" href="../assets/steeringwheel.png?v=5">
+
+<style>
+:root{--navy:#102b46;--orange:#ed861b;--ink:#18324b;--muted:#718096;--line:#e7ebf0;--bg:#f5f7fa;--green:#14845c;--red:#c83d3d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}
+.top{background:#fff;border-bottom:1px solid var(--line);padding:14px 4%;display:flex;justify-content:space-between;align-items:center;gap:16px;position:sticky;top:0;z-index:4}.brand{display:flex;align-items:center;gap:12px}.brand-logo{width:155px;max-width:35vw;max-height:52px;object-fit:contain}.brand strong{font-size:17px;color:var(--navy)}.brand small{display:block;color:var(--muted);font-size:11px}.top-actions{display:flex;gap:9px;align-items:center}
+.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:750;cursor:pointer}.btn.primary{background:var(--orange);color:white}.btn.dark{background:var(--navy);color:white}.btn.light{background:#edf1f5;color:var(--navy)}.btn:disabled{opacity:.5;cursor:not-allowed}
+main{max-width:1500px;margin:auto;padding:26px 4% 55px}.heading{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px}.eyebrow{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#b96b19;font-weight:900}.heading h1{font-size:clamp(25px,4vw,34px);margin:5px 0;color:var(--navy)}.heading p{margin:0;color:var(--muted)}
+.filters{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px;margin-bottom:15px}.field label{display:block;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:6px}.field select,.field input{width:100%;height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 10px;color:var(--ink)}
+.status{font-size:12px;color:var(--muted);margin:0 0 15px;min-height:18px}.status.error{color:var(--red)}.status.ok{color:var(--green)}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:15px}.kpi,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 18px #102b4608}.kpi{padding:16px}.kpi .label{font-size:11px;color:var(--muted);font-weight:750}.kpi .value{font-size:28px;font-weight:900;color:var(--navy);margin:7px 0 3px}.kpi .hint{font-size:11px;color:#8995a4}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:14px}.panel{padding:17px;min-width:0}.panel.wide{grid-column:1/-1}.panel h2{font-size:14px;color:var(--navy);margin:0 0 3px}.sub{font-size:11px;color:var(--muted);margin-bottom:12px}.chart-wrap{height:260px;position:relative}.chart-wrap.tall{height:320px}
+.table-wrap{overflow:auto;max-height:440px;border:1px solid var(--line);border-radius:9px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f8fafc;color:#63748a;font-size:10px;text-transform:uppercase;letter-spacing:.6px;position:sticky;top:0;white-space:nowrap}td{max-width:420px;overflow-wrap:anywhere}.empty{padding:28px;text-align:center;color:var(--muted)}
+.login-shell{min-height:calc(100vh - 74px);display:grid;place-items:center;padding:25px}.login{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 18px 55px #102b4612}.login h1{color:var(--navy);margin:0 0 5px;font-size:24px}.login p{color:var(--muted);font-size:13px;margin:0 0 20px}.login .field{margin:12px 0}.login .btn{width:100%;margin-top:8px;height:44px}.hidden{display:none!important}.foot{text-align:center;color:#98a2af;font-size:10px;padding:25px}
+.section-title{margin:22px 0 10px;color:var(--navy);font-size:17px}.pill{display:inline-block;background:#edf3f8;border-radius:20px;padding:3px 8px;font-size:10px;font-weight:700}
+@media(max-width:900px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){main{padding:18px 13px 40px}.top{padding:12px}.heading{display:block}.heading .btn{margin-top:12px}.grid{grid-template-columns:1fr}.panel.wide{grid-column:auto}.filters{grid-template-columns:1fr 1fr}.top-actions #refreshBtn{display:none}.brand-logo{width:100px}}
+</style></head>
+<body>
+<header class="top"><div class="brand"><img class="brand-logo" src="../assets/logo.png" alt="DriveReach"><div><strong>Admin</strong><small>Survey insights & community research</small></div></div><div class="top-actions"><span id="userLabel" style="font-size:11px;color:#718096"></span><button class="btn light hidden" id="refreshBtn">Refresh</button><button class="btn dark hidden" id="logoutBtn">Sign out</button></div></header>
+<section id="loginView" class="login-shell"><div class="login"><div class="eyebrow">Private administration</div><h1>Survey dashboard</h1><p>Sign in with your authorised DriveReach admin account.</p><form id="loginForm"><div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><button class="btn primary" id="loginBtn" type="submit">Sign in securely</button></form><p style="font-size:11px;margin-top:16px">Access is controlled by Firebase Authentication and Firestore admin security rules.</p><div id="loginStatus" class="status" role="status"></div></div></section>
+<main id="dashboardView" class="hidden">
+<div class="heading"><div><div class="eyebrow">DriveReach research overview</div><h1>Community survey analytics</h1><p>Five respondent journeys · Survey version 5</p></div><div><button class="btn primary" id="exportSurveyBtn">Export survey CSV</button></div></div>
+<section class="filters">
+<div class="field"><label for="provinceFilter">Province</label><select id="provinceFilter"><option value="">All provinces</option></select></div><div class="field"><label for="cityFilter">City / town</label><select id="cityFilter"><option value="">All cities</option></select></div><div class="field"><label for="dateFrom">From date</label><input id="dateFrom" type="date"></div><div class="field"><label for="dateTo">To date</label><input id="dateTo" type="date"></div><div style="display:flex;align-items:end"><button class="btn light" id="clearFilters">Clear</button></div>
+</section><div id="dataStatus" class="status" role="status">Connecting…</div>
+<section class="kpis">
+<article class="kpi"><div class="label">Survey responses</div><div class="value" id="kTotal">—</div><div class="hint">Filtered submissions</div></article>
+<article class="kpi"><div class="label">Provinces</div><div class="value" id="kProvinces">—</div><div class="hint">Represented in this view</div></article>
+<article class="kpi"><div class="label">Cities / towns</div><div class="value" id="kCities">—</div><div class="hint">Represented in this view</div></article>
+<article class="kpi"><div class="label">Launch contact opt-ins</div><div class="value" id="kOptIn">—</div><div class="hint">Respondents who agreed to be contacted</div></article>
+<article class="kpi"><div class="label">Website visitors</div><div class="value" id="kVisitors">—</div><div class="hint">Unique browser visitors recorded</div></article>
+</section>
+<h2 class="section-title">Community profile</h2><section class="grid">
+<article class="panel"><h2>Responses by province</h2><div class="chart-wrap"><canvas id="provinceChart"></canvas></div></article><article class="panel"><h2>Age groups</h2><div class="chart-wrap"><canvas id="ageChart"></canvas></div></article><article class="panel"><h2>Employment</h2><div class="chart-wrap"><canvas id="employmentChart"></canvas></div></article><article class="panel"><h2>Driving journey</h2><div class="chart-wrap"><canvas id="journeyChart"></canvas></div></article><article class="panel"><h2>Licence status</h2><div class="chart-wrap"><canvas id="licenceChart"></canvas></div></article><article class="panel"><h2>DriveReach platform interest</h2><div class="chart-wrap"><canvas id="platformChart"></canvas></div></article><article class="panel wide"><h2>Requested services</h2><div class="chart-wrap tall"><canvas id="servicesChart"></canvas></div></article></section>
+<h2 class="section-title">Journey-specific insights</h2><section class="grid" id="journeyCharts"></section>
+<section class="panel wide" style="margin-bottom:14px"><h2>Responses by city / town</h2><div class="sub">Top barrier and funding answers are derived from the relevant journey fields where available.</div><div class="table-wrap"><table><thead><tr><th>Province</th><th>City / town</th><th>Responses</th><th>Respondent journeys</th></tr></thead><tbody id="cityTable"></tbody></table></div></section>
+<section class="panel wide" style="margin-bottom:14px" id="contactPanel"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><h2>Opted-in contact details</h2><div class="sub" style="margin:4px 0 0">Only respondents who agreed to be contacted are listed. Personal details are masked by default.</div></div><button class="btn dark" id="togglePersonalData" type="button" aria-pressed="false">Show personal data</button></div><div id="contactStatus" class="status" style="margin-top:12px">Contact details are hidden.</div><div class="table-wrap"><table><thead><tr><th>Survey ID</th><th>Name</th><th>Phone number</th><th>Email</th><th>Consent</th></tr></thead><tbody id="contactTable"><tr><td colspan="5" class="empty">Sign in to load opted-in contact records.</td></tr></tbody></table></div></section>
+<section class="panel wide" style="margin-bottom:14px"><h2>Survey submissions</h2><div class="sub">Survey answers only. Names, phone numbers and email addresses are not retrieved by this dashboard.</div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Journey</th><th>Province</th><th>City</th><th>Age</th><th>Employment</th><th>Licence status</th><th>Answers</th></tr></thead><tbody id="responseTable"></tbody></table></div></section>
+
+<div class="foot">DriveReach · Reaching Learners Left Behind · Private survey analytics</div></main>
+<script>
+const firebaseConfig={apiKey:"AIzaSyA1_f32s6V0pr3kHQF4VxnCMQrF8xxKhzY",authDomain:"drivereach-8548f.firebaseapp.com",projectId:"drivereach-8548f",storageBucket:"drivereach-8548f.firebasestorage.app",messagingSenderId:"587409863866",appId:"1:587409863866:web:0a760b5055abbe827f3e83",measurementId:"G-LMLLJ50BSP"};
+function loadExternalScript(urls){return new Promise((resolve,reject)=>{let i=0;const next=()=>{if(i>=urls.length)return reject(new Error("Could not load required library: "+urls[0]));const s=document.createElement("script");s.src=urls[i++];s.onload=resolve;s.onerror=()=>{s.remove();next()};document.head.appendChild(s)};next()})}
+// Attach the submit handler immediately, before any external Firebase scripts load.
+// This prevents the browser's default form submission from refreshing the page.
+let resolveAuthReady;
+const authReady = new Promise(resolve => { resolveAuthReady = resolve; });
+document.getElementById("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  const button = document.getElementById("loginBtn");
+  const message = document.getElementById("loginStatus");
+  button.disabled = true;
+  message.textContent = "Connecting securely…";
+  message.className = "status";
+  try {
+    const auth = await authReady;
+    message.textContent = "Signing in…";
+    await auth.signInWithEmailAndPassword(
+      document.getElementById("email").value.trim(),
+      document.getElementById("password").value
+    );
+  } catch (error) {
+    message.textContent = error.message || String(error);
+    message.className = "status error";
+    button.disabled = false;
+  }
+});
+(async()=>{
+ try{
+  // Load Firebase in dependency order: app first, then Auth and Firestore.
+  await loadExternalScript(["https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"]);
+  await loadExternalScript(["https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"]);
+  await loadExternalScript(["https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"]);
+  await loadExternalScript(["https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js","https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"]);
+  if(!window.firebase||!firebase.auth||!firebase.firestore) throw new Error("Firebase libraries did not initialise. Check your internet connection or CDN access.");
+  if(!window.Chart) throw new Error("Chart.js could not load. Check your internet connection or CDN access.");
+  firebase.initializeApp(firebaseConfig);
+  const auth=firebase.auth();
+  const db=firebase.firestore();
+  resolveAuthReady(auth);
+let allSurveys=[],allContacts=[],personalDataVisible=false,totalVisitors=0,charts={};
+const $=id=>document.getElementById(id),status=(m,t="")=>{$("dataStatus").textContent=m;$("dataStatus").className="status "+t},loginStatus=(m,t="")=>{$("loginStatus").textContent=m;$("loginStatus").className="status "+t};
+const clean=v=>Array.isArray(v)?v.filter(x=>x!==null&&x!==undefined&&String(x).trim()!==""):v===undefined||v===null||v===""?[]:[v];
+const countBy=(rows,key)=>{const m={};rows.forEach(r=>clean(r[key]).forEach(v=>{const s=String(v).trim();if(s)m[s]=(m[s]||0)+1}));return Object.entries(m).sort((a,b)=>b[1]-a[1])};
+const fmtDate=v=>{if(!v)return null;if(v.toDate)return v.toDate();if(v.seconds)return new Date(v.seconds*1000);const d=new Date(v);return isNaN(d)?null:d};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const journeyNames={no_learner:"No learner's licence",learner_only:"Learner's licence",in_training:"Taking driving lessons",test_resit:"Failed driving test",licensed_driver:"Licensed driver"};
+const journeyFields={
+no_learner:["learnerReason","learnerPreparation","learnerSupport","learnerBudget"],
+learner_only:["learnerObtained","testBooked","drivingConfidence","learnerChallenges","learnerFunding"],
+in_training:["lessonFrequency","lessonProgress","instructorExperience","lessonAffordability","lessonChallenges","lessonSupport"],
+test_resit:["testAttempts","testFailureReason","testFeedback","testRetry","testSupport"],
+licensed_driver:["licenceYears","vehicleAccess","vehicle","licensedChallenges","vehicleInterest","vehicleFinance","vehicleInsurance","vehicleMaintenance","licensedNeeds","licensedFutureComment"]
+};
+function filteredRows(){const p=$("provinceFilter").value,c=$("cityFilter").value,from=$("dateFrom").value,to=$("dateTo").value;return allSurveys.filter(r=>{if(p&&r.province!==p)return false;if(c&&r.city!==c)return false;const d=fmtDate(r.submittedAt);if(from&&(!d||d<new Date(from+"T00:00:00")))return false;if(to&&(!d||d>new Date(to+"T23:59:59")))return false;return true})}
+function fillFilters(){const p=[...new Set(allSurveys.map(r=>r.province).filter(Boolean))].sort(),old=$("provinceFilter").value;$("provinceFilter").innerHTML='<option value="">All provinces</option>'+p.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");$("provinceFilter").value=p.includes(old)?old:"";updateCities()}
+function updateCities(){const p=$("provinceFilter").value,old=$("cityFilter").value,c=[...new Set(allSurveys.filter(r=>!p||r.province===p).map(r=>r.city).filter(Boolean))].sort();$("cityFilter").innerHTML='<option value="">All cities</option>'+c.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");$("cityFilter").value=c.includes(old)?old:""}
+function chart(id,type,entries,horizontal=false){const el=$(id);if(!el)return;if(charts[id])charts[id].destroy();charts[id]=new Chart(el,{type,data:{labels:entries.map(x=>x[0]),datasets:[{data:entries.map(x=>x[1]),backgroundColor:["#ed861b","#102b46","#f5a623","#52718e","#d9a36a","#9aafbf","#c66d1a","#345b78","#f2c18b"],borderColor:"#fff",borderWidth:2,borderRadius:type==="bar"?5:0}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:horizontal?"y":"x",plugins:{legend:{display:type==="doughnut",position:"bottom",labels:{boxWidth:10,font:{size:10}}}},scales:type==="bar"?{x:{beginAtZero:true,ticks:{precision:0}},y:{ticks:{font:{size:10}}}}:{}}})}
+function renderJourneyCharts(rows){const host=$("journeyCharts");host.innerHTML="";Object.entries(journeyFields).forEach(([journey,fields])=>{const subset=rows.filter(r=>r.respondentType===journey);fields.forEach(field=>{const values=countBy(subset,field);if(!values.length)return;const id="j_"+field;const card=document.createElement("article");card.className="panel";card.innerHTML=`<h2>${esc(field.replace(/([A-Z])/g," $1"))}</h2><div class="sub">${esc(journeyNames[journey])} · ${subset.length} respondents</div><div class="chart-wrap"><canvas id="${id}"></canvas></div>`;host.appendChild(card);chart(id,values.length>5?"bar":"doughnut",values,values.length>5)})})}
+function render(){const rows=filteredRows();
+$("kTotal").textContent=rows.length.toLocaleString();$("kProvinces").textContent=new Set(rows.map(r=>r.province).filter(Boolean)).size;$("kCities").textContent=new Set(rows.map(r=>r.city).filter(Boolean)).size;$("kOptIn").textContent=allContacts.filter(c=>c.consentToLaunchContact===true).length.toLocaleString();$("kVisitors").textContent=totalVisitors.toLocaleString();
+chart("provinceChart","bar",countBy(rows,"province"),true);chart("ageChart","doughnut",countBy(rows,"age"));chart("employmentChart","doughnut",countBy(rows,"employment"));
+const journeys=countBy(rows,"respondentType").map(([k,v])=>[journeyNames[k]||k,v]);chart("journeyChart","doughnut",journeys);chart("licenceChart","bar",countBy(rows,"licence"),true);chart("platformChart","doughnut",countBy(rows,"platform"));chart("servicesChart","bar",countBy(rows,"services"),true);renderJourneyCharts(rows);
+const grouped={};rows.forEach(r=>{const k=(r.province||"Not specified")+"||"+(r.city||"Not specified");(grouped[k]??=[]).push(r)});$("cityTable").innerHTML=Object.entries(grouped).sort((a,b)=>b[1].length-a[1].length).map(([k,list])=>{const [p,c]=k.split("||");return `<tr><td>${esc(p)}</td><td>${esc(c)}</td><td>${list.length}</td><td>${esc([...new Set(list.map(r=>journeyNames[r.respondentType]||r.respondentType||"Unknown"))].join(", "))}</td></tr>`}).join("")||'<tr><td colspan="4" class="empty">No matching responses.</td></tr>';
+$("responseTable").innerHTML=[...rows].sort((a,b)=>(fmtDate(b.submittedAt)?.getTime()||0)-(fmtDate(a.submittedAt)?.getTime()||0)).map(r=>{const d=fmtDate(r.submittedAt),answers=Object.entries(r).filter(([k,v])=>!["id","age","province","city","employment","licence","respondentType","visitorId","source","surveyVersion","submittedAt"].includes(k)&&v!==""&&v!==null&&v!==undefined).map(([k,v])=>`${k}: ${Array.isArray(v)?v.join(", "):v}`).join(" · ");return `<tr><td>${d?esc(d.toLocaleString()):"—"}</td><td>${esc(journeyNames[r.respondentType]||r.respondentType||"—")}</td><td>${esc(r.province)}</td><td>${esc(r.city)}</td><td>${esc(r.age)}</td><td>${esc(r.employment)}</td><td>${esc(r.licence)}</td><td>${esc(answers)}</td></tr>`}).join("")||'<tr><td colspan="8" class="empty">No responses match these filters.</td></tr>';
+status(`${rows.length.toLocaleString()} survey responses loaded · Updated ${new Date().toLocaleString()}`,"ok")}
+function maskValue(value){const text=String(value??"").trim();if(!text)return "—";return "•".repeat(Math.max(6,Math.min(text.length,16)))}
+function renderContacts(){const rows=allContacts.filter(c=>c.consentToLaunchContact===true);$("contactTable").innerHTML=rows.length?rows.map(c=>{const name=personalDataVisible?(c.fullName||"—"):maskValue(c.fullName);const phone=personalDataVisible?(c.phone||"—"):maskValue(c.phone);const email=personalDataVisible?(c.email||"—"):maskValue(c.email);return `<tr><td>${esc(c.surveyId||c.id||"—")}</td><td>${esc(name)}</td><td>${esc(phone)}</td><td>${esc(email)}</td><td><span class="pill">Opted in</span></td></tr>`}).join(""):'<tr><td colspan="5" class="empty">No opted-in contact records found.</td></tr>';$("togglePersonalData").textContent=personalDataVisible?"Hide personal data":"Show personal data";$("togglePersonalData").setAttribute("aria-pressed",String(personalDataVisible));$("contactStatus").textContent=`${rows.length.toLocaleString()} opted-in contact record(s). ${personalDataVisible?"Personal details are visible on this screen.":"Names, phone numbers and emails are masked."}`}
+async function loadData(){status("Loading version 5 survey data…");$("contactStatus").textContent="Loading opted-in contact records…";try{const [s,c,v]=await Promise.all([db.collection("driveReachSurveys").get(),db.collection("driveReachContactPreferences").where("consentToLaunchContact","==",true).get(),db.collection("surveyStats").doc("visitors").get()]);allSurveys=s.docs.map(d=>({id:d.id,...d.data()}));allContacts=c.docs.map(d=>({id:d.id,...d.data()}));totalVisitors=v.exists?(Number(v.data().visitorCount)||0):0;personalDataVisible=false;fillFilters();render();renderContacts()}catch(e){console.error(e);status("Could not retrieve data: "+e.message+" — check the admin read permissions for survey responses and opted-in contact records.","error");$("contactStatus").textContent="Could not load contact records. Check Firestore permissions."}}
+function csvDownload(name,fields,rows){const cell=v=>'"'+String(Array.isArray(v)?v.join("; "):v?.toDate?v.toDate().toISOString():v??"").replace(/"/g,'""')+'"';const csv=[fields.join(","),...rows.map(r=>fields.map(f=>cell(r[f])).join(","))].join("\r\n");const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+auth.onAuthStateChanged(user=>{if(user){$("loginView").classList.add("hidden");$("dashboardView").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");$("refreshBtn").classList.remove("hidden");$("userLabel").textContent=user.email||"Signed in";$("loginBtn").disabled=false;loadData()}else{$("loginView").classList.remove("hidden");$("dashboardView").classList.add("hidden");$("logoutBtn").classList.add("hidden");$("refreshBtn").classList.add("hidden");$("userLabel").textContent=""}});
+$("logoutBtn").onclick=()=>auth.signOut();$("refreshBtn").onclick=loadData;$("togglePersonalData").onclick=()=>{personalDataVisible=!personalDataVisible;renderContacts()};$("provinceFilter").onchange=()=>{updateCities();render()};["cityFilter","dateFrom","dateTo"].forEach(id=>$(id).addEventListener("change",render));$("clearFilters").onclick=()=>{$("provinceFilter").value="";updateCities();$("cityFilter").value="";$("dateFrom").value="";$("dateTo").value="";render()};
+$("exportSurveyBtn").onclick=()=>{const rows=filteredRows(),fields=["id","age","province","city","employment","licence","respondentType",...Object.values(journeyFields).flat(),"platform","services","employmentBenefit","jobInterest","improvement","source","surveyVersion","submittedAt"];csvDownload("drivereach-survey-responses.csv",fields,rows)};
+
+ }catch(error){
+  resolveAuthReady({signInWithEmailAndPassword: async()=>{throw error;}});
+  console.error("DriveReach admin startup error:",error);
+  const loginStatus=document.getElementById("loginStatus");
+  const dataStatus=document.getElementById("dataStatus");
+  const message="App could not start: "+(error?.message||error);
+  if(loginStatus){loginStatus.textContent=message;loginStatus.className="status error";}
+  if(dataStatus){dataStatus.textContent=message;dataStatus.className="status error";}
+ }
+})();
+</script></body></html>
